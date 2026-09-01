@@ -1,0 +1,13 @@
+{
+  "name": "cyber-shrine",
+  "prompt": "雨上がりの未来的な神社。濡れた石畳、伝統木造と淡い発光ガラスの融合。人物はいない。中央に歩ける参道がある。",
+  "style": "photorealistic cinematic environment",
+  "duration_seconds": 10,
+  "resolution": "768P",
+  "ratio": "16:9",
+  "camera_path": "arc-clockwise",
+  "orbit_degrees": 45,
+  "camera_height_m": 1.65,
+  "generate_panorama": true,
+  "use_context_ir": false
+}
