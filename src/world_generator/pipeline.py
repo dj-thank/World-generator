@@ -206,11 +206,17 @@ class WorldGenerationPipeline:
                 first_frame=anchor_destination,
                 use_context_ir=spec.use_context_ir,
             )
+            video_metadata = dict(video_result.metadata)
+            effective_prompt = video_metadata.pop("effective_prompt", None)
+            if isinstance(effective_prompt, str) and effective_prompt != prompts.h3_video:
+                effective_path = prompts_dir / "h3-effective.txt"
+                effective_path.write_text(effective_prompt + "\n", encoding="utf-8")
+                manifest.prompts["h3_effective"] = effective_path.relative_to(root).as_posix()
             manifest.artifacts["h3_video"] = Artifact(
                 path=str(video_destination.relative_to(root)),
                 kind="video",
                 provider=video_result.provider,
-                metadata=video_result.metadata,
+                metadata=video_metadata,
             )
             self._finish(video_stage, StageStatus.SUCCEEDED)
             self._save(manifest, root)
